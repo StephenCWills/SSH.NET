@@ -249,6 +249,7 @@ namespace Renci.SshNet.Sftp
                     flags |= Flags.Append | Flags.CreateNewOrOpen;
                     break;
                 case FileMode.Create:
+                    flags |= Flags.CreateNewOrOpen;
                     _handle = _session.RequestOpen(path, flags | Flags.Truncate, true);
                     if (_handle == null)
                     {
@@ -260,7 +261,7 @@ namespace Renci.SshNet.Sftp
                     }
                     break;
                 case FileMode.CreateNew:
-                    flags |= Flags.CreateNew;
+                    flags |= Flags.CreateNew | Flags.CreateNewOrOpen;
                     break;
                 case FileMode.Open:
                     break;
@@ -268,7 +269,7 @@ namespace Renci.SshNet.Sftp
                     flags |= Flags.CreateNewOrOpen;
                     break;
                 case FileMode.Truncate:
-                    flags |= Flags.Truncate;
+                    flags |= Flags.Truncate | Flags.CreateNewOrOpen;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("mode");

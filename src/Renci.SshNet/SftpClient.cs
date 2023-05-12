@@ -909,10 +909,10 @@ namespace Renci.SshNet
         {
             CheckDisposed();
 
-            var flags = Flags.Write | Flags.Truncate;
+            var flags = Flags.Write | Flags.CreateNewOrOpen;
 
             if (canOverride)
-                flags |= Flags.CreateNewOrOpen;
+                flags |= Flags.Truncate;
             else
                 flags |= Flags.CreateNew;
 
@@ -1039,10 +1039,10 @@ namespace Renci.SshNet
             if (path.IsNullOrWhiteSpace())
                 throw new ArgumentException("path");
 
-            var flags = Flags.Write | Flags.Truncate;
+            var flags = Flags.Write | Flags.CreateNewOrOpen;
 
             if (canOverride)
-                flags |= Flags.CreateNewOrOpen;
+                flags |= Flags.Truncate;
             else
                 flags |= Flags.CreateNew;
 
